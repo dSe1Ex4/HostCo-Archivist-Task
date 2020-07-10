@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jaxb:bindings
+        xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+        xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/jaxb http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd"
+        jaxb:extensionBindingPrefixes="xjc annox" version="2.1"
+        xmlns:annox="http://annox.dev.java.net">
+    <jaxb:globalBindings>
+        <xjc:javaType adapter="ru.hostco.dvs.mpi.utility.date.AdapterXmlDate"
+                      name="java.time.LocalDate"
+                      xmlType="xs:date"/>
+        <xjc:javaType adapter="ru.hostco.dvs.mpi.utility.date.AdapterXmlDateTime"
+                      name="java.time.LocalDateTime"
+                      xmlType="xs:dateTime"/>
+        <xjc:simple/>
+    </jaxb:globalBindings>
+    <jaxb:bindings schemaLocation="types.xsd">
+        <jaxb:bindings node="/xs:schema/xs:complexType[@name='GetUserRequestType']">
+            <annox:annotate target="class">@javax.xml.bind.annotation.XmlRootElement</annox:annotate>
+        </jaxb:bindings>
+    </jaxb:bindings>
+</jaxb:bindings>

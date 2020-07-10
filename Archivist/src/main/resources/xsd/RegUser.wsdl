@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by user (company) -->
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://www.hostco.ru/reguser" targetNamespace="http://www.hostco.ru/reguser">
+	<wsdl:types>
+		<xsd:schema xmlns:rt="http://www.hostco.ru/reguser/types" targetNamespace="http://www.hostco.ru/reguser" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+			<xs:import namespace="http://www.hostco.ru/reguser/types" schemaLocation="types.xsd"/>
+			<xsd:element name="regUserRequest" type="rt:RegUserRequestType"/>
+			<xsd:element name="regUserResponse" type="rt:RegUserResponseType"/>
+			<xsd:element name="editUserRequest" type="rt:EditUserRequestType"/>
+			<xsd:element name="editUserResponse" type="rt:EditUserResponseType"/>
+			<xsd:element name="resetPasswordRequest" type="rt:ResetPasswordRequestType"/>
+			<xsd:element name="resetPasswordResponse" type="rt:ResetPasswordResponseType"/>
+			<xsd:element name="getUserRequest" type="rt:GetUserRequestType"/>
+			<xsd:element name="getUserResponse" type="rt:GetUserResponseType"/>
+			<xsd:element name="getRolesRequest" type="rt:GetRolesRequestType"/>
+			<xsd:element name="getRolesResponse" type="rt:GetRolesResponseType"/>
+			<xsd:element name="setRolesRequest" type="rt:SetRolesRequestType"/>
+			<xsd:element name="setRolesResponse" type="rt:SetRolesResponseType"/>
+			<xsd:element name="authUserRequest" type="rt:AuthRequestType"/>
+			<xsd:element name="authUserResponse" type="rt:AuthResponseType"/>
+			<xsd:element name="changePasswordRequest" type="rt:ChangePasswordRequestType"/>
+			<xsd:element name="changePasswordResponse" type="rt:ChangePasswordResponseType"/>
+			<xsd:element name="getAccessCodeRequest" type="rt:GetAccessCodeRequestType"/>
+			<xsd:element name="getAccessCodeResponse" type="rt:GetAccessCodeResponseType"/>
+			<xsd:element name="checkAccessCodeRequest" type="rt:CheckAccessCodeRequestType"/>
+			<xsd:element name="checkAccessCodeResponse" type="rt:StandartResponseType"/>
+			<xsd:element name="addChildRequest" type="rt:ParentType"/>
+			<xsd:element name="addChildResponse" type="rt:StandartResponseType"/>
+			<xsd:element name="editChildRequest" type="rt:ParentType"/>
+			<xsd:element name="editChildResponse" type="rt:StandartResponseType"/>
+			<xsd:element name="deleteChildRequest" type="rt:ParentType"/>
+			<xsd:element name="deleteChildResponse" type="rt:StandartResponseType"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="regUserRequest">
+		<wsdl:part name="parameters" element="tns:regUserRequest"/>
+	</wsdl:message>
+	<wsdl:message name="regUserResponse">
+		<wsdl:part name="parameters" element="tns:regUserResponse"/>
+	</wsdl:message>
+	<wsdl:message name="editUserRequest">
+		<wsdl:part name="parameters" element="tns:editUserRequest"/>
+	</wsdl:message>
+	<wsdl:message name="editUserResponse">
+		<wsdl:part name="parameters" element="tns:editUserResponse"/>
+	</wsdl:message>
+	<wsdl:message name="resetPasswordRequest">
+		<wsdl:part name="parameters" element="tns:resetPasswordRequest"/>
+	</wsdl:message>
+	<wsdl:message name="resetPasswordResponse">
+		<wsdl:part name="parameters" element="tns:resetPasswordResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getUserRequest">
+		<wsdl:part name="parameters" element="tns:getUserRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getUserResponse">
+		<wsdl:part name="parameters" element="tns:getUserResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getRolesRequest">
+		<wsdl:part name="parameters" element="tns:getRolesRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getRolesResponse">
+		<wsdl:part name="parameters" element="tns:getRolesResponse"/>
+	</wsdl:message>
+	<wsdl:message name="setRolesRequest">
+		<wsdl:part name="parameters" element="tns:setRolesRequest"/>
+	</wsdl:message>
+	<wsdl:message name="setRolesResponse">
+		<wsdl:part name="parameters" element="tns:setRolesResponse"/>
+	</wsdl:message>
+	<wsdl:message name="authUserRequest">
+		<wsdl:part name="authUserRequest" element="tns:authUserRequest"/>
+	</wsdl:message>
+	<wsdl:message name="authUserResponse">
+		<wsdl:part name="authUserResponse" element="tns:authUserResponse"/>
+	</wsdl:message>
+	<wsdl:message name="changePasswordRequest">
+		<wsdl:part name="changePasswordRequest" element="tns:changePasswordRequest"/>
+	</wsdl:message>
+	<wsdl:message name="changePasswordResponse">
+		<wsdl:part name="changePasswordResponse" element="tns:changePasswordResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getAccessCodeRequest">
+		<wsdl:part name="getAccessCodeRequest" element="tns:getAccessCodeRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getAccessCodeResponse">
+		<wsdl:part name="getAccessCodeResponse" element="tns:getAccessCodeResponse"/>
+	</wsdl:message>
+	<wsdl:message name="checkAccessCodeRequest">
+		<wsdl:part name="checkAccessCodeRequest" element="tns:checkAccessCodeRequest"/>
+	</wsdl:message>
+	<wsdl:message name="checkAccessCodeResponse">
+		<wsdl:part name="checkAccessCodeResponse" element="tns:checkAccessCodeResponse"/>
+	</wsdl:message>
+	<wsdl:message name="addChildRequest">
+		<wsdl:part name="parameters" element="tns:addChildRequest"/>
+	</wsdl:message>
+	<wsdl:message name="addChildResponse">
+		<wsdl:part name="parameters" element="tns:addChildResponse"/>
+	</wsdl:message>
+	<wsdl:message name="editChildRequest">
+		<wsdl:part name="parameters" element="tns:editChildRequest"/>
+	</wsdl:message>
+	<wsdl:message name="editChildResponse">
+		<wsdl:part name="parameters" element="tns:editChildResponse"/>
+	</wsdl:message>
+	<wsdl:message name="deleteChildRequest">
+		<wsdl:part name="parameters" element="tns:deleteChildRequest"/>
+	</wsdl:message>
+	<wsdl:message name="deleteChildResponse">
+		<wsdl:part name="parameters" element="tns:deleteChildResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="RegUser">
+		<wsdl:operation name="regUser">
+			<wsdl:documentation>Регистрация пользователя в единой базе данных
+				пользователей здравоохранения ХМАО-Югры
+			</wsdl:documentation>
+			<wsdl:input message="tns:regUserRequest"/>
+			<wsdl:output message="tns:regUserResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="editUser">
+			<wsdl:documentation>Редактирование атрибутов пользователя в единой
+				базе данных пользователей здравоохранения ХМАО-Югры
+			</wsdl:documentation>
+			<wsdl:input message="tns:editUserRequest"/>
+			<wsdl:output message="tns:editUserResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="resetPassword">
+			<wsdl:documentation>Сброс пароля пользователя в единой базе данных
+				пользователей здравоохранения ХМАО-Югры
+			</wsdl:documentation>
+			<wsdl:input message="tns:resetPasswordRequest"/>
+			<wsdl:output message="tns:resetPasswordResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getUser">
+			<wsdl:documentation>Запрос сведений о пользователе
+			</wsdl:documentation>
+			<wsdl:input message="tns:getUserRequest"/>
+			<wsdl:output message="tns:getUserResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getRoles">
+			<wsdl:documentation>Запрос списка ролей пользователя
+			</wsdl:documentation>
+			<wsdl:input message="tns:getRolesRequest"/>
+			<wsdl:output message="tns:getRolesResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="setRoles">
+			<wsdl:documentation>Присваивание пользователю списка ролей
+			</wsdl:documentation>
+			<wsdl:input message="tns:setRolesRequest"/>
+			<wsdl:output message="tns:setRolesResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="authUser">
+			<wsdl:documentation>Авторизовать пользователя (для мобильных
+				приложени)
+			</wsdl:documentation>
+			<wsdl:input message="tns:authUserRequest"/>
+			<wsdl:output message="tns:authUserResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="changePassword">
+			<wsdl:documentation>Сменить пароль позователю</wsdl:documentation>
+			<wsdl:input message="tns:changePasswordRequest"/>
+			<wsdl:output message="tns:changePasswordResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getAccessCode">
+			<wsdl:documentation>Получить код доступа пользователя
+			</wsdl:documentation>
+			<wsdl:input message="tns:getAccessCodeRequest"/>
+			<wsdl:output message="tns:getAccessCodeResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="checkAccessCode">
+			<wsdl:documentation>Проверить код доступа пользователя</wsdl:documentation>
+			<wsdl:input message="tns:checkAccessCodeRequest"/>
+			<wsdl:output message="tns:checkAccessCodeResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="addChild">
+			<wsdl:documentation>Добавляет пользователю сведения о ребёнке
+			</wsdl:documentation>
+			<wsdl:input message="tns:addChildRequest"/>
+			<wsdl:output message="tns:addChildResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="editChild">
+			<wsdl:documentation>Редактирование сведений о ребёнке
+			</wsdl:documentation>
+			<wsdl:input message="tns:editChildRequest"/>
+			<wsdl:output message="tns:editChildResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="deleteChild">
+			<wsdl:documentation>Удаление сведений о ребёнке
+			</wsdl:documentation>
+			<wsdl:input message="tns:deleteChildRequest"/>
+			<wsdl:output message="tns:deleteChildResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="regUserSOAP" type="tns:RegUser">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="regUser">
+			<soap:operation soapAction="http://www.hostco.ru/reguser/regUser"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="editUser">
+			<soap:operation soapAction="http://www.hostco.ru/reguser/editUser"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="resetPassword">
+			<soap:operation soapAction="http://www.hostco.ru/reguser/resetPassword"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getUser">
+			<soap:operation soapAction="http://www.hostco.ru/reguser/getUser"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getRoles">
+			<soap:operation soapAction="http://www.hostco.ru/reguser/getRoles"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="setRoles">
+			<soap:operation soapAction="http://www.hostco.ru/reguser/setRoles"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="authUser">
+			<soap:operation soapAction="http://www.hostco.ru/reguser/authUser"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="changePassword">
+			<soap:operation soapAction="http://www.hostco.ru/reguser/changePassword"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getAccessCode">
+			<soap:operation soapAction="http://www.hostco.ru/reguser/getAccessCode"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="checkAccessCode">
+			<soap:operation soapAction="http://www.hostco.ru/reguser/checkAccessCode"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="addChild">
+			<soap:operation soapAction="http://www.hostco.ru/reguser/addChild"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="editChild">
+			<soap:operation soapAction="http://www.hostco.ru/reguser/editChild"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="deleteChild">
+			<soap:operation soapAction="http://www.hostco.ru/reguser/deleteChild"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="RegUserService">
+		<wsdl:port name="regUserSOAP" binding="tns:regUserSOAP">
+			<soap:address location="http://localhost:8080/RegUserService/services/RegUserService"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

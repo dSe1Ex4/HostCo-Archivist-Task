@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "SOAP.HostCo.URL",
+      "type": "java.lang.String",
+      "description": "SOAP URL от HostCo."
+    },
+    {
+      "name": "SOAP.HostCo.Token",
+      "type": "java.lang.String",
+      "description": "SOAP токен от HostCo."
+    }
+  ] }

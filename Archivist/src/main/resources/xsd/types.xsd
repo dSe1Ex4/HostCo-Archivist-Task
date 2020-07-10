@@ -1,0 +1,813 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by koshkin (EMBRACE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.hostco.ru/reguser/types" targetNamespace="http://www.hostco.ru/reguser/types" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:simpleType name="GUIDType">
+		<xs:annotation>
+			<xs:documentation>GUID</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="64"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SNILSType">
+		<xs:annotation>
+			<xs:documentation>СНИЛС</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+<!--		<xs:minLength value="11"/>
+			<xs:maxLength value="11"/>
+			<xs:pattern value="[0-9]{11}"/>-->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PhoneType">
+		<xs:annotation>
+			<xs:documentation>Номер телефона</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+<!--			<xs:minLength value="10"/>-->
+<!--			<xs:maxLength value="10"/>-->
+<!--			<xs:pattern value="9[0-9]{9}"/>-->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MuCodeType">
+		<xs:annotation>
+			<xs:documentation>Код ЛПУ</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FIOType">
+		<xs:annotation>
+			<xs:documentation>Стандарт строки для фамилии, имени, отчества</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="40"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PasswordType">
+		<xs:annotation>
+			<xs:documentation>Стандарт строки c паролем</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:attribute name="token" type="tns:GUIDType">
+		<xs:annotation>
+			<xs:documentation>Токен безопасности в виде атрибута</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:simpleType name="AccessCodeType">
+		<xs:annotation>
+			<xs:documentation>Код доступа</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PolicyNumberType">
+		<xs:annotation>
+			<xs:documentation>Номер полиса ОМС</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<!--xs:maxLength value="16"/-->
+			<!--xs:pattern value="[0-9]+"/-->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BirthPlaceType">
+		<xs:annotation>
+			<xs:documentation>Место рождения</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ChildrenType">
+		<xs:annotation>
+			<xs:documentation>Список детей</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="child" type="tns:ChildType">
+				<xs:annotation>
+					<xs:documentation>Информация о ребенке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DocumentsType">
+		<xs:annotation>
+			<xs:documentation>Список документов</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="docId" type="tns:DocIdType">
+				<xs:annotation>
+					<xs:documentation>Информация о документе, удостоверяющем личность</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="WarningListType">
+		<xs:annotation>
+			<xs:documentation>Список некритичных ошибок, возникающих при работе методов</xs:documentation>
+		</xs:annotation>
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="warning" type="tns:WarningType">
+				<xs:annotation>
+					<xs:documentation>Сообщение</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="WarningType">
+		<xs:annotation>
+			<xs:documentation>Описание некритичной ошибки, возникающей при работе методов</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SNILS" type="tns:SNILSType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>СНИЛС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="message" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Сообщение</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StringID">
+		<xs:annotation>
+			<xs:documentation>Версионированный идентификатор записи с текстовым кодом</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="version" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>Версия записи</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="IntID">
+		<xs:annotation>
+			<xs:documentation>Версионированный идентификатор записи с числовым кодом</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:int">
+				<xs:attribute name="version" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>Версия записи</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="DocIdType">
+		<xs:annotation>
+			<xs:documentation>Документ физического лица</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="type" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>тип документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="series" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>серия документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="number" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>номер документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="issueDate" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>дата выдачи документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="issueId" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>код подразделения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="issuedBy" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>кем выдан</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RoleType">
+		<xs:annotation>
+			<xs:documentation>Роль пользователя</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="RoleCode">
+				<xs:annotation>
+					<xs:documentation>Код роли</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="RoleTitle" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Описание роли</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="IsBase" type="xs:int" minOccurs="0"/>
+			<xs:element name="MCOD" type="tns:MuCodeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код ЛПУ (некоторые роли привязаны к ЛПУ)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RoleListType">
+		<xs:annotation>
+			<xs:documentation>Список ролей</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="Role" type="tns:RoleType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UserIDType">
+		<xs:annotation>
+			<xs:documentation>Тип, идентифицирующий пользователя (token и SNILS)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SNILS" type="tns:SNILSType"/>
+		</xs:sequence>
+		<xs:attribute ref="tns:token"/>
+	</xs:complexType>
+	<xs:complexType name="LoginType">
+		<xs:annotation>
+			<xs:documentation>Базовые сведения о логине</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="tns:PersonType">
+				<xs:sequence>
+					<xs:element name="children" type="tns:ChildrenType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Список детей</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PersonType">
+		<xs:annotation>
+			<xs:documentation>Сведения о физическом лице</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SNILS" type="tns:SNILSType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер СНИЛС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Lastname" type="tns:FIOType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Фамилия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Firstname" type="tns:FIOType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Имя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Middlename" type="tns:FIOType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Отчество</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BirthDate" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата рождения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Phone" type="tns:PhoneType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Телефон</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="email" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Электронная почта</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="gender" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код пола (c51007)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PolicyNumber" type="tns:PolicyNumberType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Полис ОМС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="birthPlace" type="tns:BirthPlaceType"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Место рождения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="documents" type="tns:DocumentsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сведения о ДУЛ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ChildType">
+		<xs:annotation>
+			<xs:documentation>Сведения о ребенке</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="tns:PersonType">
+				<xs:sequence>
+					<xs:element name="Erroneous" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Флаг наличия ошибки в записи</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ErrorCode" type="xs:int" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Код ошибки</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ErrorText" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Примечания к статусу записи</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ParentType">
+		<xs:annotation>
+			<xs:documentation>Сведения о пользователе с ребёнком</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="tns:UserIDType">
+				<xs:sequence>
+					<xs:element name="child" type="tns:ChildType">
+						<xs:annotation>
+							<xs:documentation>Информация о ребенке</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="LoginStrictType">
+		<xs:annotation>
+			<xs:documentation>Базовые сведения о логине, атрибуты, обязательные при регистрации</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="tns:LoginType">
+				<xs:sequence>
+					<xs:element name="SNILS" type="tns:SNILSType">
+						<xs:annotation>
+							<xs:documentation>Номер СНИЛС. Используется в качестве логина</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Lastname" type="tns:FIOType">
+						<xs:annotation>
+							<xs:documentation>Фамилия</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Firstname" type="tns:FIOType">
+						<xs:annotation>
+							<xs:documentation>Имя</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Middlename" type="tns:FIOType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Отчество</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="BirthDate" type="xs:date">
+						<xs:annotation>
+							<xs:documentation>Дата рождения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Phone" type="tns:PhoneType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Телефон</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="email" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Электронная почта</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="gender" type="xs:int" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Код пола (c51007)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PolicyNumber" type="tns:PolicyNumberType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Полис ОМС</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="birthPlace" type="tns:BirthPlaceType"  minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Место рождения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="documents" type="tns:DocumentsType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Сведения о ДУЛ</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="children" type="tns:ChildrenType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Список детей</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="StandartResponseType">
+		<xs:annotation>
+			<xs:documentation>Тип ответного сообщения с результатом вызова операции сервиса (и возможным списком ошибок)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ErrorCode" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Код ошибки (0 - отсутствие ошибок)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ErrorText" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Текст ошибки, не связанной с конкретной записью</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ErrorList" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Список ошибок при приеме конкретных записей</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence maxOccurs="unbounded">
+						<xs:element name="RecordError">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="RecordCode" type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Идентификатор записи. Зависит от конкретного типа принимаемых данных</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="RecordErrorText" type="xs:string">
+										<xs:annotation>
+											<xs:documentation>Текст ошибки</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TmpPasswordResponseType">
+		<xs:annotation>
+			<xs:documentation>Тип ответного сообщения с временным паролем, либо ошибкой</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SNILS" type="tns:SNILSType">
+				<xs:annotation>
+					<xs:documentation>СНИЛС созданного/изменённого логина</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="TemporaryPassword" type="tns:PasswordType">
+						<xs:annotation>
+							<xs:documentation>Временный пароль для созданного/изменённого логина</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:element name="Error" type="tns:StandartResponseType"/>
+			</xs:choice>
+			<xs:element name="Warnings" type="tns:WarningListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Список некритичных ошибок</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RegUserRequestType">
+		<xs:annotation>
+			<xs:documentation>Запрос на создание пользователя в единой базе данных пользователей здравоохранения ХМАО-Югры</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="tns:LoginStrictType">
+				<xs:sequence>
+					<xs:element name="CreatePatient" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Создавать запись в OP_PATIENT при регистрации пользователя</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MCOD" type="tns:MuCodeType">
+						<xs:annotation>
+							<xs:documentation>Код ЛПУ</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute ref="tns:token"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="RegUserResponseType">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос на создание пользователя</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="tns:TmpPasswordResponseType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="EditUserRequestType">
+		<xs:annotation>
+			<xs:documentation>Запрос на изменение атрибутов пользователя в единой базе данных пользователей здравоохранения ХМАО-Югры</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="tns:LoginType">
+				<xs:sequence>
+					<xs:element name="mcode" type="tns:MuCodeType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Код ЛПУ</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute ref="tns:token"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="EditUserResponseType">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос на редактиорвание пользователя</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="tns:StandartResponseType">
+				<xs:sequence>
+					<xs:element name="mcode" type="tns:MuCodeType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Код ЛПУ для роли "Пользователь"</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="warnings" type="tns:WarningListType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Список некритичных ошибок</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ResetPasswordRequestType">
+		<xs:annotation>
+			<xs:documentation>Запрос для сброса пароля на временный</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="tns:UserIDType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ResetPasswordResponseType">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос на сброс пароля</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="tns:TmpPasswordResponseType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="GetUserRequestType">
+		<xs:annotation>
+			<xs:documentation>Запрос сведений о пользователе</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="tns:UserIDType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="GetUserResponseType">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос сведений о пользователе</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SNILS" type="tns:SNILSType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Снилс из запроса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="Login" type="tns:LoginStrictType"/>
+				<xs:element name="Error" type="tns:StandartResponseType"/>
+			</xs:choice>
+			<xs:element name="mcode" type="tns:MuCodeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код ЛПУ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="gender" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код пола (c51007)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GetRolesRequestType">
+		<xs:annotation>
+			<xs:documentation>Запрос списка ролей пользователя. Если СНИЛС не указан, то возвращается список всех ролей</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SNILS" type="tns:SNILSType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute ref="tns:token"/>
+	</xs:complexType>
+	<xs:complexType name="GetRolesResponseType">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос списка ролей</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SNILS" type="tns:SNILSType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Снилс из запроса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="RoleList" type="tns:RoleListType"/>
+				<xs:element name="Error" type="tns:StandartResponseType"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SetRolesRequestType">
+		<xs:annotation>
+			<xs:documentation>Запрос на присваивание пользователю списка ролей</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="tns:UserIDType">
+				<xs:sequence>
+					<xs:element name="RoleList" type="tns:RoleListType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SetRolesResponseType">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос на присваивание ролей</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SNILS" type="tns:SNILSType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Снилс из запроса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Error" type="tns:StandartResponseType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="regUserRequest" type="tns:RegUserRequestType">
+		<xs:annotation>
+			<xs:documentation>Вызов сервиса</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="regUserResponse" type="tns:RegUserResponseType">
+		<xs:annotation>
+			<xs:documentation>Ответное сообщение с результатом вызова операции сервиса</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="AuthRequestType">
+		<xs:annotation>
+			<xs:documentation>Запрос аутентификации</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SNILS" type="tns:SNILSType">
+				<xs:annotation>
+					<xs:documentation>СНИЛС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="password" type="tns:PasswordType">
+				<xs:annotation>
+					<xs:documentation>Пароль</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="tns:token"/>
+	</xs:complexType>
+	<xs:complexType name="AuthResponseType">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос аутентификации</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SNILS" type="tns:SNILSType">
+				<xs:annotation>
+					<xs:documentation>СНИЛС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="temporary" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Признак временного пароля</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="error" type="tns:StandartResponseType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ChangePasswordRequestType">
+		<xs:annotation>
+			<xs:documentation>Запрос на смену пароля</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="tns:AuthRequestType">
+				<xs:sequence>
+					<xs:element name="newPassword" type="tns:PasswordType">
+						<xs:annotation>
+							<xs:documentation>Новый паролль</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ChangePasswordResponseType">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос на смену пароля</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="tns:AuthResponseType">
+				<xs:sequence>
+					<xs:element name="SNILS" type="tns:SNILSType">
+						<xs:annotation>
+							<xs:documentation>СНИЛС</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="temporary" type="xs:boolean" minOccurs="0" maxOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Признак временного пароля</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="error" type="tns:StandartResponseType"/>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CheckAccessCodeRequestType">
+		<xs:annotation>
+			<xs:documentation>Запрос на проверку кода доступа</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="tns:GetAccessCodeRequestType">
+				<xs:sequence>
+					<xs:element name="AccessCode" type="tns:AccessCodeType">
+						<xs:annotation>
+							<xs:documentation>Код доступа</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="GetAccessCodeRequestType">
+		<xs:annotation>
+			<xs:documentation>Запрос на получение кода доступа</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SNILS" type="tns:SNILSType">
+				<xs:annotation>
+					<xs:documentation>СНИЛС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="tns:token"/>
+	</xs:complexType>
+	<xs:complexType name="GetAccessCodeResponseType">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос на получение кода доступа</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AccessCode" type="tns:AccessCodeType">
+				<xs:annotation>
+					<xs:documentation>Код доступа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="error" type="tns:StandartResponseType"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
