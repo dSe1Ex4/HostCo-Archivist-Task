@@ -10,12 +10,7 @@ import ru.hostco.reguser.types.GetUserResponse;
 public class HostArchivistApplication {
 
 	public static void main(String[] args) {
-		ApplicationContext context = SpringApplication.run(HostArchivistApplication.class, args);
-
-		UserClient userClient = context.getBean(UserClient.class);
-
-		GetUserResponse response = userClient.getUserBySnils("28752377117");
-		System.out.println(response.getLogin().getMiddlename());
+		SpringApplication.run(HostArchivistApplication.class, args);
 	}
 
 }

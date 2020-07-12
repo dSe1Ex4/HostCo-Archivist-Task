@@ -1,0 +1,16 @@
+SOAP.HostCo:
+    Token: "D468E929-A94E-4F16-A7D2-DB414EC53071"
+    URL: "http://www.hostco.ru/reguser/getUser"
+
+spring:
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://localhost:5432/archidb
+        username: archi
+        password: 1234
+    flyway:
+        url: jdbc:postgresql://localhost:5432/archidb
+        user: postgres
+        password: 1234
+
+logging.level.org.springframework.ws: TRACE

@@ -20,26 +20,10 @@ public class UserClient extends WebServiceGatewaySupport {
         request.setSNILS(snils);
         request.setToken("D468E929-A94E-4F16-A7D2-DB414EC53071");
 
-        System.out.println();
-        System.out.println("Requesting user for " + snils);
-
-/*        factory.createGetUserResponse((GetUserResponseType)getWebServiceTemplate().marshalSendAndReceive(
-                request,
-                new SoapActionCallback(SoapURL)
-        ));*/
-
         return (GetUserResponse) getWebServiceTemplate()
                 .marshalSendAndReceive(
                         request,
                         new SoapActionCallback(SoapURL)
                 );
-/*        JAXBElement<GetUserResponse> response = (JAXBElement<GetUserResponse>) getWebServiceTemplate()
-                .marshalSendAndReceive(
-                    request,
-                    new SoapActionCallback(SoapURL)
-        );
-        System.out.println(response.getValue().getLogin().getMiddlename());
-
-        return response.getValue();*/
     }
 }
