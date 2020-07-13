@@ -3,6 +3,7 @@ package co.host.archivist.rest.controllers;
 import co.host.archivist.db.repositories.RefMoRepository;
 import co.host.archivist.rest.dto.Mo;
 import co.host.archivist.rest.dto.MoList;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,13 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
+@RequiredArgsConstructor(onConstructor_ = {@Autowired})
 public class MoController {
     RefMoRepository moRepository;
-
-    @Autowired
-    public MoController(RefMoRepository moRepository) {
-        this.moRepository = moRepository;
-    }
 
     @GetMapping("/mo")
     @ResponseStatus(HttpStatus.NOT_FOUND)
