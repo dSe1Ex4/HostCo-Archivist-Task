@@ -3,8 +3,7 @@ CREATE SCHEMA IF NOT EXISTS archivist;
 GRANT USAGE ON SCHEMA archivist to archi;
 
 CREATE TABLE archivist.stored_data (
-    id serial NOT NULL,
-    primary key (id),
+    id serial primary key NOT NULL,
 
     userId numeric NOT NULL,
 

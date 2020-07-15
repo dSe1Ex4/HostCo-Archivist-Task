@@ -1,6 +1,10 @@
-SOAP.HostCo:
-    Token: "D468E929-A94E-4F16-A7D2-DB414EC53071"
-    URL: "http://www.hostco.ru/reguser/getUser"
+app:
+    SOAP:
+        Token: "D468E929-A94E-4F16-A7D2-DB414EC53071"
+        BaseReqURL: "http://www.hostco.ru/reguser"
+        URL: "https://cas-test.hostco.ru/RegUserService/services/RegUserService"
+    REST:
+        ServiceURL: "http://localhost:8112"
 
 spring:
     datasource:

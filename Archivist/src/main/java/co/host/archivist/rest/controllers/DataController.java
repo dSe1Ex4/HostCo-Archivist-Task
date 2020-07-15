@@ -12,6 +12,9 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Objects;
 
+/**
+ * Rest Controller для обработки запроса /data
+ */
 @RestController
 public class DataController {
     StoredDataRepositoryImpl dataRepository;

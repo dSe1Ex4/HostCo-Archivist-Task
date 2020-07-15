@@ -8,6 +8,10 @@ import ru.hostco.reguser.types.GetUserResponse;
 
 import java.util.Objects;
 
+/**
+ * Менеджер моделей SOAP
+ * Используется для получения моделей по SOAP запросам
+ */
 @Component
 public class SoapModelManager {
     private static UserClient userClient;

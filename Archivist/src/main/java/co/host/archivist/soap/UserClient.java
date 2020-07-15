@@ -7,23 +7,27 @@ import ru.hostco.reguser.types.GetUserRequest;
 import ru.hostco.reguser.types.GetUserResponse;
 import ru.hostco.reguser.types.ObjectFactory;
 
+/**
+ * SOAP Клиент для запроса /getUser
+ */
 public class UserClient extends WebServiceGatewaySupport {
-    @Value("${SOAP.HostCo.Token}")
+    @Value("${app.SOAP.Token}")
     private String TOKEN;
-    @Value("${SOAP.HostCo.URL}")
-    private String SoapURL;
+    @Value("${app.SOAP.BaseReqURL}")
+    private String SOAP_URL;
 
     public GetUserResponse getUserBySnils(String snils) {
         ObjectFactory factory = new ObjectFactory();
 
         GetUserRequest request = factory.createGetUserRequest();
         request.setSNILS(snils);
-        request.setToken("D468E929-A94E-4F16-A7D2-DB414EC53071");
+        request.setToken(TOKEN);
 
+        final String GET_REQ = "/getUser";
         return (GetUserResponse) getWebServiceTemplate()
                 .marshalSendAndReceive(
                         request,
-                        new SoapActionCallback(SoapURL)
+                        new SoapActionCallback(SOAP_URL+GET_REQ)
                 );
     }
 }

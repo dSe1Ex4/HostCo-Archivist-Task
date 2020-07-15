@@ -6,6 +6,9 @@ import ru.hostco.reguser.types.GetUserResponse;
 import ru.hostco.reguser.types.LoginStrictType;
 import java.time.LocalDate;
 
+/**
+ * DTO для структуры User из SOAP
+ */
 @Data
 public class UserSoap {
     protected String snils;

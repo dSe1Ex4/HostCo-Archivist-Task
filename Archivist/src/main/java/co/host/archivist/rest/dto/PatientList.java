@@ -7,10 +7,9 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MoList {
-    private List<Mo> moList = new ArrayList<>();
+public class PatientList {
+    private List<Patient> patientList = new ArrayList<>();
 }

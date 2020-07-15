@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+/**
+ * Rest Controller для обработки запроса /user
+ */
 @RestController
 public class UserController {
 
